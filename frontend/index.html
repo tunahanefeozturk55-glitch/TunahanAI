@@ -18,17 +18,15 @@
 
   <div class="app">
 
-    <!-- ÜST BAR -->
     <header class="header">
 
       <div class="logo">
 
-        <div class="logo-icon">
-          T
-        </div>
+        <div class="logo-icon">T</div>
 
         <div class="logo-text">
           <h1>TunahanAI</h1>
+
           <span>
             Yapay zekâ asistanın
             <span class="online-dot"></span>
@@ -54,19 +52,15 @@
     </header>
 
 
-    <!-- SOHBET -->
     <main
       id="chat"
       class="chat"
       aria-live="polite"
     >
 
-      <!-- HOŞ GELDİN MESAJI -->
       <div class="message ai">
 
-        <div class="avatar">
-          T
-        </div>
+        <div class="avatar">T</div>
 
         <div class="message-content">
 
@@ -100,16 +94,15 @@
     </main>
 
 
-    <!-- YAZIYOR GÖSTERGESİ -->
+    <!-- YAZIYOR -->
+
     <div
       id="typing"
       class="typing hidden"
       aria-hidden="true"
     >
 
-      <div class="typing-avatar">
-        T
-      </div>
+      <div class="typing-avatar">T</div>
 
       <div class="typing-content">
 
@@ -126,14 +119,97 @@
     </div>
 
 
+    <!-- SESLİ KONUŞMA EKRANI -->
+
+    <div
+      id="voiceOverlay"
+      class="voice-overlay hidden"
+    >
+
+      <div class="voice-top">
+
+        <button
+          id="closeVoiceBtn"
+          class="voice-close"
+          type="button"
+          aria-label="Sesli konuşmayı kapat"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="voice-center">
+
+        <div
+          id="voiceOrb"
+          class="voice-orb"
+        >
+          <div class="voice-orb-inner">
+            T
+          </div>
+        </div>
+
+        <div
+          id="voiceStatus"
+          class="voice-status"
+        >
+          Dinliyorum...
+        </div>
+
+        <div
+          id="voiceWave"
+          class="voice-wave"
+          aria-hidden="true"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div
+          id="voiceTranscript"
+          class="voice-transcript"
+        >
+          Konuşmaya başlayabilirsin
+        </div>
+
+      </div>
+
+
+      <div class="voice-bottom">
+
+        <button
+          id="voiceMicBtn"
+          class="voice-mic"
+          type="button"
+          aria-label="Mikrofon"
+        >
+          🎙️
+        </button>
+
+      </div>
+
+    </div>
+
+
     <!-- MESAJ GİRİŞİ -->
+
     <form
       id="chatForm"
       class="input-area"
       autocomplete="off"
     >
 
-      <!-- FOTOĞRAF -->
       <button
         type="button"
         id="imageBtn"
@@ -152,7 +228,6 @@
       >
 
 
-      <!-- MESAJ -->
       <div class="input-wrapper">
 
         <textarea
@@ -164,6 +239,7 @@
         ></textarea>
 
         <div class="input-info">
+
           <span>
             Enter ile gönder
           </span>
@@ -171,12 +247,27 @@
           <span id="characterCount">
             0 / 10000
           </span>
+
         </div>
 
       </div>
 
 
+      <!-- MİKROFON -->
+
+      <button
+        type="button"
+        id="micBtn"
+        class="icon-btn mic-btn"
+        title="Sesli konuş"
+        aria-label="Sesli konuş"
+      >
+        🎙️
+      </button>
+
+
       <!-- GÖNDER -->
+
       <button
         type="submit"
         id="sendBtn"
@@ -190,7 +281,6 @@
     </form>
 
 
-    <!-- ALT BİLGİ -->
     <div class="footer-note">
       TunahanAI hata yapabilir. Önemli bilgileri kontrol etmeyi unutma.
     </div>
@@ -201,4 +291,4 @@
   <script src="app.js"></script>
 
 </body>
-  </html>
+</html>
