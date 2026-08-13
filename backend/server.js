@@ -1,14 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const { GoogleGenAI } = require("@google/generative-ai");
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app = express();
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
 
 app.post('/api/chat', async (req, res) => {
     try {
@@ -16,7 +15,6 @@ app.post('/api/chat', async (req, res) => {
             model: 'gemini-1.5-flash',
             contents: req.body.message,
         });
-
         res.json({ reply: response.text });
     } catch (error) {
         console.error('Hata:', error);
@@ -29,4 +27,4 @@ app.get('*', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Sunucu başladı.`));
+app.listen(PORT, () => console.log('Sunucu başladı.'));
