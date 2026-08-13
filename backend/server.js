@@ -2,15 +2,19 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,
+    httpOptions: {
+        apiVersion: "v1"
+    }
+});
 
 app.post('/api/chat', async (req, res) => {
     try {
@@ -22,9 +26,12 @@ app.post('/api/chat', async (req, res) => {
             });
         }
 
-        const result = await model.generateContent(message);
-        const response = await result.response;
-        const reply = response.text();
+        const interaction = await ai.interactions.create({
+            model: 'gemini-3.6-flash',
+            input: message
+        });
+
+        const reply = interaction.output_text;
 
         res.json({ reply });
 
