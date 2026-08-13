@@ -6,7 +6,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const app = express();
 app.use(express.json());
 
-// Statik dosyaları (index.html, style.css, script.js) frontend klasöründen sun
+// Statik dosyaları frontend klasöründen sun
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -14,7 +14,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // En güncel ve hızlı model
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
         const result = await model.generateContent(message);
         const response = await result.response;
         res.json({ reply: response.text() });
@@ -24,11 +25,10 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// Sayfaya girildiğinde frontend klasöründeki index.html'i aç
+// Sayfaya girildiğinde index.html'i aç
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Sunucu ${PORT} portunda çalışıyor`));
-
