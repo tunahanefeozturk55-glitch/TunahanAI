@@ -6,8 +6,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const app = express();
 app.use(express.json());
 
-// Statik dosyaları (index.html, style.css) üst klasörden oku
-app.use(express.static(path.join(__dirname, '../')));
+// Statik dosyaları (index.html, style.css, script.js) frontend klasöründen sun
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -24,10 +24,11 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// Ana adrese girildiğinde index.html'i gönder
+// Sayfaya girildiğinde frontend klasöründeki index.html'i aç
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Sunucu ${PORT} portunda çalışıyor`));
+
