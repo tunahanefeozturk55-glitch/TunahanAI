@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TunahanAI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+
+        <div>
+          <h1>TunahanAI</h1>
+          <span>Yapay zekâ asistanın</span>
+        </div>
+      </div>
+
+      <button id="clearBtn" class="clear-btn">
+        Yeni Sohbet
+      </button>
+    </header>
+
+
+    <main id="chat" class="chat">
+
+      <div class="message ai">
+
+        <div class="avatar">T</div>
+
+        <div class="bubble">
+          Merhaba! 👋 Ben <b>TunahanAI</b>.<br>
+          Sana nasıl yardımcı olabilirim?
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <div id="typing" class="typing hidden">
+      TunahanAI düşünüyor...
+    </div>
+
+
+    <form id="chatForm" class="input-area">
+
+      <button
+        type="button"
+        id="imageBtn"
+        class="icon-btn">
+        📷
+      </button>
+
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        hidden
+      >
+
+      <textarea
+        id="messageInput"
+        placeholder="TunahanAI'ye bir şey sor..."
+        rows="1">
+      </textarea>
+
+      <button
+        type="submit"
+        class="send-btn">
+        ➤
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
