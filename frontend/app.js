@@ -5,16 +5,18 @@ const typing = document.getElementById("typing");
 
 const imageBtn = document.getElementById("imageBtn");
 const imageInput = document.getElementById("imageInput");
-
 const clearBtn = document.getElementById("clearBtn");
+
+
+// TunahanAI'nin backend adresi
+const API_URL = "https://tunahanai.onrender.com";
 
 
 // MESAJ EKLE
 function addMessage(text, type) {
 
   const message = document.createElement("div");
-
-  message.className = `message ${type}`;
+  message.className = "message " + type;
 
   const avatar = document.createElement("div");
   avatar.className = "avatar";
@@ -22,7 +24,6 @@ function addMessage(text, type) {
 
   const bubble = document.createElement("div");
   bubble.className = "bubble";
-
   bubble.textContent = text;
 
   message.appendChild(avatar);
@@ -51,34 +52,37 @@ form.addEventListener("submit", async function(event) {
 
   try {
 
-    const response = await fetch("/api/chat", {
+    const response = await fetch(
+      API_URL + "/api/chat",
+      {
+        method: "POST",
 
-      method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
 
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        message: message
-      })
-
-    });
+        body: JSON.stringify({
+          message: message
+        })
+      }
+    );
 
     const data = await response.json();
 
     typing.classList.add("hidden");
 
-    if (data.reply) {
+    if (response.ok && data.reply) {
 
       addMessage(data.reply, "ai");
 
     } else {
 
       addMessage(
-        "Üzgünüm, bir hata oluştu.",
+        "TunahanAI cevap veremedi. Backend veya API bağlantısını kontrol etmemiz gerekiyor.",
         "ai"
       );
+
+      console.error("Backend cevabı:", data);
 
     }
 
@@ -87,11 +91,12 @@ form.addEventListener("submit", async function(event) {
     typing.classList.add("hidden");
 
     addMessage(
-      "Backend'e bağlanamadım. Backend henüz kurulmamış olabilir.",
+      "TunahanAI sunucusuna bağlanılamadı.",
       "ai"
     );
 
-    console.error(error);
+    console.error("Bağlantı hatası:", error);
+
   }
 
 });
@@ -113,7 +118,7 @@ imageInput.addEventListener("change", function() {
   const file = imageInput.files[0];
 
   addMessage(
-    `📷 ${file.name} seçildi. Fotoğraf analizi yakında aktif olacak.`,
+    "📷 " + file.name + " seçildi.",
     "user"
   );
 
