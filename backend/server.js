@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const { GoogleGenAI } = require("@google/genai");
+const { GoogleGenAI } = require("@google/generative-ai");
 
 const app = express();
 app.use(express.json());
