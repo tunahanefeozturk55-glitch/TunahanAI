@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="TunahanAI - Yapay zekâ asistanın"
+  >
+
   <title>TunahanAI</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,31 +18,81 @@
 
   <div class="app">
 
+    <!-- ÜST BAR -->
     <header class="header">
-      <div class="logo">
-        <div class="logo-icon">T</div>
 
-        <div>
-          <h1>TunahanAI</h1>
-          <span>Yapay zekâ asistanın</span>
+      <div class="logo">
+
+        <div class="logo-icon">
+          T
         </div>
+
+        <div class="logo-text">
+          <h1>TunahanAI</h1>
+          <span>
+            Yapay zekâ asistanın
+            <span class="online-dot"></span>
+          </span>
+        </div>
+
       </div>
 
-      <button id="clearBtn" class="clear-btn">
-        Yeni Sohbet
-      </button>
+      <div class="header-actions">
+
+        <button
+          id="clearBtn"
+          class="clear-btn"
+          type="button"
+          title="Yeni sohbet"
+        >
+          <span>＋</span>
+          <span class="clear-text">Yeni Sohbet</span>
+        </button>
+
+      </div>
+
     </header>
 
 
-    <main id="chat" class="chat">
+    <!-- SOHBET -->
+    <main
+      id="chat"
+      class="chat"
+      aria-live="polite"
+    >
 
+      <!-- HOŞ GELDİN MESAJI -->
       <div class="message ai">
 
-        <div class="avatar">T</div>
+        <div class="avatar">
+          T
+        </div>
 
-        <div class="bubble">
-          Merhaba! 👋 Ben <b>TunahanAI</b>.<br>
-          Sana nasıl yardımcı olabilirim?
+        <div class="message-content">
+
+          <div class="message-name">
+            TunahanAI
+          </div>
+
+          <div class="bubble">
+
+            <div class="welcome-title">
+              Merhaba! 👋
+            </div>
+
+            <div class="welcome-text">
+              Ben <strong>TunahanAI</strong>.
+              Sana sorularını cevaplamada,
+              fikir üretmede, kod yazmada ve
+              daha birçok konuda yardımcı olabilirim.
+            </div>
+
+          </div>
+
+          <div class="message-time">
+            Şimdi
+          </div>
+
         </div>
 
       </div>
@@ -43,17 +100,47 @@
     </main>
 
 
-    <div id="typing" class="typing hidden">
-      TunahanAI düşünüyor...
+    <!-- YAZIYOR GÖSTERGESİ -->
+    <div
+      id="typing"
+      class="typing hidden"
+      aria-hidden="true"
+    >
+
+      <div class="typing-avatar">
+        T
+      </div>
+
+      <div class="typing-content">
+
+        <span>TunahanAI düşünüyor</span>
+
+        <span class="typing-dots">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span>
+
+      </div>
+
     </div>
 
 
-    <form id="chatForm" class="input-area">
+    <!-- MESAJ GİRİŞİ -->
+    <form
+      id="chatForm"
+      class="input-area"
+      autocomplete="off"
+    >
 
+      <!-- FOTOĞRAF -->
       <button
         type="button"
         id="imageBtn"
-        class="icon-btn">
+        class="icon-btn"
+        title="Fotoğraf ekle"
+        aria-label="Fotoğraf ekle"
+      >
         📷
       </button>
 
@@ -64,19 +151,49 @@
         hidden
       >
 
-      <textarea
-        id="messageInput"
-        placeholder="TunahanAI'ye bir şey sor..."
-        rows="1">
-      </textarea>
 
+      <!-- MESAJ -->
+      <div class="input-wrapper">
+
+        <textarea
+          id="messageInput"
+          placeholder="TunahanAI'ye bir şey sor..."
+          rows="1"
+          maxlength="10000"
+          aria-label="Mesaj"
+        ></textarea>
+
+        <div class="input-info">
+          <span>
+            Enter ile gönder
+          </span>
+
+          <span id="characterCount">
+            0 / 10000
+          </span>
+        </div>
+
+      </div>
+
+
+      <!-- GÖNDER -->
       <button
         type="submit"
-        class="send-btn">
-        ➤
+        id="sendBtn"
+        class="send-btn"
+        title="Gönder"
+        aria-label="Mesaj gönder"
+      >
+        <span class="send-icon">➤</span>
       </button>
 
     </form>
+
+
+    <!-- ALT BİLGİ -->
+    <div class="footer-note">
+      TunahanAI hata yapabilir. Önemli bilgileri kontrol etmeyi unutma.
+    </div>
 
   </div>
 
@@ -84,4 +201,4 @@
   <script src="app.js"></script>
 
 </body>
-</html>
+  </html>
