@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 app.use(express.json());
-app.use(express.static('public'));
+
+// Statik dosyaları (index.html, style.css) üst klasörden oku
+app.use(express.static(path.join(__dirname, '../')));
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -19,6 +22,11 @@ app.post('/api/chat', async (req, res) => {
         console.error("Gemini Hatası:", error);
         res.status(500).json({ error: error.message });
     }
+});
+
+// Ana adrese girildiğinde index.html'i gönder
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
